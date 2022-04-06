@@ -1,6 +1,7 @@
 import React,{useContext} from 'react'
 import { motion } from 'framer-motion'
 import { PokemonContext } from '../context/Pokemon'
+import { Link} from 'react-router-dom'
 
 const sectionVariant = {
     hidden : {
@@ -34,7 +35,11 @@ function Pokemon({Pokedata}) {
             </div>
             <h3>{poke.name}</h3>
     
-            <motion.p variants={pokeBtn}  className='Pokedex-btn'>About</motion.p>
+            <motion.p variants={pokeBtn}  className='Pokedex-btn'>
+               <Link to={`/${poke.name}`} >
+                 About
+               </Link>
+            </motion.p>
        </motion.section>
     ))}
     </section>

@@ -1,0 +1,22 @@
+.Pokie{
+    width: 450px;
+    /* background-color: red; */
+    margin: 0 auto;
+}
+.Pokie header nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+.Pokie header nav svg{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.Pokie .Pokemon-div{
+    text-align: center;
+}
+.Pokie-name {
+    text-align: center;
+}

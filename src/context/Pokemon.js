@@ -32,11 +32,10 @@ const fetchPokemon = async ({queryKey}) => {
       return {...value, image :pokeNum,rgb : rndColor() }
   }
 
-function handleClick(poke){
-    console.log(poke)
-}
+
 export function PokemonProvider({children}) {
     const [speech,setSpeech] = useState(0)
+    const [pokie,setPokie] = useState('')
     const [offset,setOffset] = useState(0)
     const {data,isPreviousData} = useQuery(['pokemon',offset],fetchPokemon,{
         keepPreviousData:true
@@ -48,9 +47,11 @@ export function PokemonProvider({children}) {
     const third = (newData && newData.slice(8,12))
     const fourth = (newData && newData.slice(12,16))
     const fifth = (newData && newData.slice(16))
-
+    function handleClick(poke){
+        setPokie(poke)
+    }
   return (
-    <PokemonContext.Provider value={{offset,setOffset,newData,first,second,third,fourth,fifth,handleClick}}>
+    <PokemonContext.Provider value={{offset,setOffset,newData,first,second,third,fourth,fifth,handleClick,pokie,handleSearch}}>
       {children}
     </PokemonContext.Provider>
   )

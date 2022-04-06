@@ -97,6 +97,10 @@ background-color: inherit;
    font-weight: bold;
    font-size: 14px;
 }
+.Pokedex-btn a{
+  text-decoration: none;
+  color: inherit;
+}
 .Pokedex-btn:hover{
     background-color: #fff;
     cursor: pointer;
