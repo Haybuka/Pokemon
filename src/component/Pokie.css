@@ -1,22 +1,103 @@
 .Pokie{
     width: 450px;
-    /* background-color: red; */
-    margin: 0 auto;
+    /* background-color: rgba(209, 73, 73, 0.382); */
+    background-color: rgb(28, 42, 44);
+    margin: 5px auto;
+    box-shadow: 1px 1px 2px black;
+    border-radius: 20px;
+    padding: 10px 20px ;
+}
+.Pokie h3{
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.515);
+     text-transform: capitalize;
 }
 .Pokie header nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    margin: 10px 0;
 }
 .Pokie header nav svg{
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
+    color: #fff;
 }
 .Pokie .Pokemon-div{
     text-align: center;
 }
+.Pokie img{
+    filter: drop-shadow(10px 20px 100px rgb(254, 254, 254));
+    /* width: 100%;
+    height: 100%; */
+  
+}
 .Pokie-name {
     text-align: center;
+    font-size: 30px;
+}
+.Pokie-type{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 15px;
+}
+.Pokie-type li{
+    margin: 0 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.466);
+    border: 1.5px solid rgba(70, 225, 70, 0.642);
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: #fff;
+    text-transform: capitalize;
+}
+.Pokie-type li:nth-child(2){
+    border: 1.5px solid rgba(225, 109, 70, 0.642);
+}
+
+.details-nav{
+    display: flex;
+    justify-content: space-between;
+    
+    margin: 10px 0;
+}
+
+.details-nav a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.Pokie-details{
+    padding: 5px 10px; 
+}
+.pokieNav-active{
+    position: relative;
+}
+.pokieNav-active::after{
+    position: absolute;
+    bottom: -10%;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 15%;
+    background-color: rgba(255, 255, 255, 0.642);
+}
+.pokieNav{
+    position: relative;
+}
+.pokieNav::before{
+    position: absolute;
+    bottom: -10%;
+    left: 0;
+    content: '';
+    width: 0%;
+    height: 15%;
+    background-color: rgba(225, 109, 70, 0.642);
+    transition:  all 0.25s ease-in-out;
+} 
+.pokieNav:hover::before{
+    width: 80%;
 }

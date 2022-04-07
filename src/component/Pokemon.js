@@ -27,7 +27,7 @@ function Pokemon({Pokedata}) {
   return (
     <section className='Pokedex-group'>
         {Pokedata.map((poke) => ( 
-        <motion.section style={{backgroundColor : `${poke.rgb}`}} variants={sectionVariant} animate="visible" initial="hidden" key={poke.url} className='Pokedex-card' onClick={ () =>handleClick(poke)}>
+        <motion.section style={{backgroundColor : `${poke.rgb}`}} variants={sectionVariant} animate="visible" initial="hidden" key={poke.url} className='Pokedex-card'>
             <div className={poke.image > 999 ? 'poke-alt':'poke-img'}>
     
                  <img src={poke.image > 999 ? 'https://www.svgrepo.com/show/276264/pokeball-pokemon.svg': `http://assets.pokemon.com/assets/cms2/img/pokedex/detail/${poke.image}.png`} alt="pokemon"/>
@@ -35,7 +35,7 @@ function Pokemon({Pokedata}) {
             </div>
             <h3>{poke.name}</h3>
     
-            <motion.p variants={pokeBtn}  className='Pokedex-btn'>
+            <motion.p variants={pokeBtn}  className='Pokedex-btn' onClick={ () =>handleClick(poke)}>
                <Link to={`/${poke.name}`} >
                  About
                </Link>
