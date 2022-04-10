@@ -1,0 +1,70 @@
+.About{
+    padding: 10px 0;
+}
+.About-fact {
+    color: #fff;
+    margin: 15px 0;
+}
+.About-fact p{
+    font-size: 14px;
+}
+.About h4{
+    color: #ffffff;
+}
+.About-experience{
+    text-transform: capitalize;
+    display: flex;
+}
+.exp-high{
+    color: rgb(55, 196, 55);
+}
+.exp-low{
+    color: rgb(185, 42, 42);
+}
+.About-experience span {
+    margin: 0 10px;
+}
+.About-abilities{
+
+}
+.About-abilities li{
+    display: inline-block;
+    list-style: none;
+    background-color: #fff;
+    padding: 5px 10px;
+    margin: 5px 10px 5px 0;
+    border-radius: 15px;
+}
+.About-personality{
+    text-align: center;
+    color: rgb(0, 0, 0);
+    padding: 10px 10px;
+    border-radius: 15px;
+     background-color: rgb(237, 235, 235);
+    margin: 5px 0 20px 0;
+}
+.About-personality svg{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.About-personality li{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+}
+.About-personality li div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* .About-personality .divider-span{
+    position:absolute;
+    width: 10%;
+    border: 2px dotted #000000;
+    height: 0%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) rotate(90deg);
+} */

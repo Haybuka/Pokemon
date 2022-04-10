@@ -6,6 +6,7 @@ import './component/Pokedex.css'
 
 function Pokedex(props) {
     const {offset,newData,first,second,third,fourth,fifth,setOffset} = useContext(PokemonContext)
+    console.log(newData)
     const sectionVariant = {
         hidden : {
             x:-100

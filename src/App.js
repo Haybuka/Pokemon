@@ -27,7 +27,7 @@ function App() {
                       <Route path="stats" element={<Stats />}/>
                       <Route path="evolution" element={<Evolution />}/>
                   </Route>
-                  <Route path="*" element={<p>Not FOUND</p>}/>
+                  <Route path="*" element={<Pokedex />}/>
                </Routes>
              </PokieContextProvider>
            </PokemonProvider>

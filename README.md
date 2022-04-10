@@ -11,8 +11,9 @@ It has helped to improve my coding skills by combinining the following :
   7. Tailwind Css.
   8. React Router
   9. Code Documentation (Layout copied from frontendMentor)
-  10. Some Skill i dont know about, that maybe caught your attention ... LOL
-
+  10. Local storage - handled refresh problem of pages
+  11. Some Skill i dont know about, that maybe caught your attention ... LOL
+  
 
 ## Table of contents
 

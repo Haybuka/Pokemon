@@ -1,11 +1,12 @@
 .Pokie{
     width: 450px;
-    /* background-color: rgba(209, 73, 73, 0.382); */
-    background-color: rgb(28, 42, 44);
-    margin: 5px auto;
-    box-shadow: 1px 1px 2px black;
+    overflow: hidden;
+    margin: 0px auto;
     border-radius: 20px;
-    padding: 10px 20px ;
+    height: auto;
+}
+.h-screen{
+    height: 100vh !important;
 }
 .Pokie h3{
     color: #fff;
@@ -29,9 +30,6 @@
 }
 .Pokie img{
     filter: drop-shadow(10px 20px 100px rgb(254, 254, 254));
-    /* width: 100%;
-    height: 100%; */
-  
 }
 .Pokie-name {
     text-align: center;
@@ -69,20 +67,41 @@
     text-decoration: none;
     color: #fff;
 }
-
+.Pokie-container {
+    padding: 10px 20px ;
+    background-color: rgb(35, 47, 49);
+   border-radius: 10px;
+}
 .Pokie-details{
-    padding: 5px 10px; 
+    padding: 5px 30px; 
+    background-color: rgb(35, 47, 49);
+    border-radius: 10px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    height: 50px;
+}
+.h-full{
+    /* height: 100vh; */
+    transform: translateY('-120px');
+}
+.Pokie-details.active{
+    background-color: rgba(61, 57, 57, 0.064);
+    
 }
 .pokieNav-active{
     position: relative;
+    outline: none;
 }
 .pokieNav-active::after{
     position: absolute;
     bottom: -10%;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     content: '';
-    width: 100%;
+    width: 40%;
+    margin: 0 auto;
     height: 15%;
+    border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.642);
 }
 .pokieNav{
