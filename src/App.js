@@ -2,6 +2,7 @@ import React from 'react'
 import Characters from './component/Characters'
 import {QueryClientProvider,QueryClient} from 'react-query'
 import { PokemonProvider} from './context/Pokemon'
+import { ThemeContextProvider } from './context/ThemeContext'
 import { PokieContextProvider } from './context/PokieContext'
 import { Route,Routes } from 'react-router-dom'
 import { About,Stats,Move,Evolution } from './component/navigation/Navigation'
@@ -17,6 +18,7 @@ function App() {
       
       <div className='container'>
         <QueryClientProvider client={queryClient}>
+           <ThemeContextProvider >
            <PokemonProvider>
              <PokieContextProvider>
               <Routes>
@@ -31,6 +33,7 @@ function App() {
                </Routes>
              </PokieContextProvider>
            </PokemonProvider>
+           </ThemeContextProvider>
          </QueryClientProvider>
       </div>
    </div>

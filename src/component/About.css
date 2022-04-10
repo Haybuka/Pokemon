@@ -3,7 +3,7 @@
 }
 .About-fact {
     color: #fff;
-    margin: 15px 0;
+    margin: 20px 0;
 }
 .About-fact p{
     font-size: 14px;
@@ -34,6 +34,7 @@
     padding: 5px 10px;
     margin: 5px 10px 5px 0;
     border-radius: 15px;
+    color: #000;
 }
 .About-personality{
     text-align: center;
@@ -41,7 +42,7 @@
     padding: 10px 10px;
     border-radius: 15px;
      background-color: rgb(237, 235, 235);
-    margin: 5px 0 20px 0;
+    margin: 20px 0;
 }
 .About-personality svg{
     width: 20px;
@@ -59,12 +60,11 @@
     justify-content: space-between;
     align-items: center;
 }
-/* .About-personality .divider-span{
-    position:absolute;
-    width: 10%;
-    border: 2px dotted #000000;
-    height: 0%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%) rotate(90deg);
-} */
+.About-eggGroup{display: flex;}
+.About-eggGroup ul{
+    margin-left: 10px;
+}
+.About-eggGroup li{
+    display: inline-block;
+    margin-right: 10px;
+}

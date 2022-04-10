@@ -2,6 +2,7 @@
 import { useQuery } from 'react-query'
 import { useContext,useState } from 'react';
 import { Pokiecontext } from '../context/PokieContext';
+import { ThemeContext } from '../context/ThemeContext';
 import {useParams,useNavigate, NavLink, Outlet} from 'react-router-dom'
 import { motion } from 'framer-motion';
 import './Pokie.css'
@@ -12,6 +13,7 @@ async function fetchPokemon({queryKey}){
 function Pokie() {
     
     const [pageView,setPageView] =useState(false)
+    const {mode} = useContext(ThemeContext)
     let params = useParams();
     const navigate = useNavigate()
     let name = params.id
@@ -47,12 +49,14 @@ function Pokie() {
              y: pageView ? '-120px' : '0px'
          }
     }
+
+    
   return (
     
        <>
          {pokemon && (
-             <main className={pageView ? 'Pokie h-screen':'Pokie'}>
-             <div className='Pokie-container' onClick={()=> setPageView(false)}>
+             <main className={pageView && mode ? 'Pokie h-screen light-mode':'Pokie dark-mode'}>
+             <div className={mode ? 'Pokie-container light-mode':'Pokie-container dark-mode'} onClick={()=> setPageView(false)}>
              <header>
                  <nav>
                     <svg onClick={()=> navigate("/")} className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
@@ -68,7 +72,7 @@ function Pokie() {
                  <PokeType type={pokemonType}/>
              </section>
              </div>
-             <motion.section variants={pageVariant} animate="visible" initial="hidden" className={pageView ? 'Pokie-details h-screen': 'Pokie-details'} onClick={()=> setPageView(true)}>
+             <motion.section variants={pageVariant} animate="visible" initial="hidden" className={pageView ? 'Pokie-details h-auto': 'Pokie-details'} onClick={()=> setPageView(true)}>
                 <PokeNav pokemon={pokemon}/>     
                 <Outlet />
              </motion.section>

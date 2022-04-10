@@ -7,11 +7,9 @@ export function PokieContextProvider({children}) {
 
     // const moves = navData && navData.moves
     const localData =  JSON.parse(localStorage.getItem('data'))
-    const moves = localData.moves
-    const stats = localData.stats
-    const rgb = localData.rgb
-    const pokeName = localData.name
-    const tipsId = localData.species.url
+    const {moves,stats,rgb , name,species} = localData
+    // const tipsId = localData.species.url
+    // const species = localData.species.url
     const about = [
        {
          experience : {
@@ -36,7 +34,7 @@ export function PokieContextProvider({children}) {
     ]
  
   return (
-     <Pokiecontext.Provider value={{pokeName,moves,setNavData,stats,about,localData,tipsId}}>
+     <Pokiecontext.Provider value={{name,moves,setNavData,stats,about,localData,species}}>
          {children}
      </Pokiecontext.Provider>
   )

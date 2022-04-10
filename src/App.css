@@ -6,9 +6,7 @@
 }
 .App{
  font-family: 'Poppins',sans-serif;
- padding: 5px;
- /* add padding  */
- /* background-color: rgba(211, 144, 94, 0.455); */
+ padding: 10px;
  height: 100%;
 }
 

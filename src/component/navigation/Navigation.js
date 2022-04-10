@@ -1,5 +1,4 @@
 import React,{useContext} from 'react'
-import { useParams } from 'react-router-dom'
 import { Pokiecontext } from '../../context/PokieContext'
 import { motion } from 'framer-motion'
 import '../Moves.css'
@@ -8,21 +7,23 @@ import '../About.css'
 import '../Evolution.css'
 import { useQuery } from 'react-query'
 export function About() {
-    const params = useParams ()
-    const name = params.id
-    const {about,pokeName,tipsId} = useContext(Pokiecontext)
+    const {about,name,species,localData} = useContext(Pokiecontext)
    const abilities = about[0].abilities
    const {height} = about[0]
    const {weight} = about[0]
    const {experience} = about[0]
+   const url = species.url
    async function fetchEncounter ({queryKey}){
        const res = await fetch(`${queryKey[1]}`)
        return res.json()
    }
-   const {data,status} = useQuery(['encounter',tipsId],fetchEncounter)
+   const {data,status} = useQuery(['encounter',url],fetchEncounter)
    const randomId = Math.floor(Math.random() * 20)
 
    const tips = status==="success" && data.flavor_text_entries 
+   const eggGroups = status==="success" && data.egg_groups
+   const habitat = status==="success" && data.habitat.name
+   console.log(eggGroups)
   return (
     <aside className='About'>
         <div>
@@ -32,6 +33,19 @@ export function About() {
                 <span>-</span>
                 <p className={experience.value > 100 ? 'exp-high':'exp-low'}>{experience.value}</p>
             </h4>
+            <h4 className='About-experience'>
+                <p>{habitat && 'Habitat'}</p> 
+                <span>-</span>
+                <p>{habitat}</p>
+            </h4>
+            <section className='About-eggGroup'>
+           <h4>{eggGroups && 'Egg Group '} - </h4>
+            <ul>
+                {eggGroups && eggGroups.map((group,id)=>(
+                    <li key={id}>{group.name}</li>
+                ))}
+            </ul>
+           </section>
             <section className='About-fact'>
                 <h4>#Random Fact</h4>
                 <p>{tips &&  tips[randomId].flavor_text}</p>
@@ -63,19 +77,17 @@ export function About() {
                </ul>
             </section>
            <section>
-           <h4>Abilities</h4>
-            <ul className='About-abilities'>
-                {abilities.map((ability,id)=>(
-                    <li key={id}>{ability.ability.name}</li>
-                ))}
-            </ul>
+               <h4>Abilities</h4>
+               <ul className='About-abilities'>
+                    {abilities.map((ability,id)=>(
+                         <li key={id}>{ability.ability.name}</li>
+                      ))}
+               </ul>
            </section>
-            {/* <h4>Tips</h4> */}
+           
         </div>
     </aside>
-    // https://pokeapi.co/api/v2/ability/{id or name}/
-    // https://pokeapi.co/api/v2/ability/94/
-    // https://pokeapi.co/api/v2/pokemon-form/6/
+
     // https://pokeapi.co/api/v2/pokemon/10034/  further adjustments
   )
 }
@@ -114,7 +126,7 @@ export function Stats() {
 
 export function Move() {
     const {moves} = useContext(Pokiecontext)
-    const truncatedMoves = moves.slice(0,39)
+    const truncatedMoves = moves.slice(5,40)
     return (
       <ul className='Moves'>
           {truncatedMoves.map((move,id) => (
@@ -127,28 +139,32 @@ export function Move() {
 }
   
 export function Evolution() {
-    const params = useParams ()
-    const name = params.id
-    const {tipsId} = useContext(Pokiecontext)
+    const {species} = useContext(Pokiecontext)
+    const url = species.url
     async function fetchEncounter ({queryKey}){
         const res = await fetch(`${queryKey[1]}`)
         return res.json()
     }
-    const {data,status} = useQuery(['encounter',tipsId],fetchEncounter)
-    // const randomId = () => Math.floor(Math.random() * 20)
-    const randomId = () => Math.floor(Math.random() * 12)
+    const {data,status} = useQuery(['encounter',url],fetchEncounter)
  
-    const tips = status==="success" && data.flavor_text_entries 
-    const newId = randomId ()
-    const truncatedTips = tips && tips.slice(newId,newId+6)
-
+    const {varieties,color,evolution_chain,evolves_from_species} = status==="success" && data
+ 
+    // console.log(color.name,evolution_chain.url,evolves_from_species)
     return (
-    <>
-      <h4 className='Evolution'>#Facts</h4>
-      <ul>
-          {tips && truncatedTips.map( (tip,id)=> <li key={id}>{tip.flavor_text}</li>)}
-      </ul>
-    </>
+    <section className='Evolution'>
+      <article className='Evolution-varieties'>
+           <h4>varieties</h4>
+           <ul>
+               {varieties && varieties.map( (variety,id)=> <li key={id}>{variety.pokemon.name}</li>)}
+           </ul>
+      </article>
+      {/* <article>
+           <h4>#Facts</h4>
+           <ul>
+               {tips && truncatedTips.map( (tip,id)=> <li key={id}>{tip.flavor_text}</li>)}
+           </ul>
+      </article> */}
+    </section>
     )
 }
   
