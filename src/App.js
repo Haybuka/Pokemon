@@ -1,8 +1,8 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import Characters from './component/Characters'
 import {QueryClientProvider,QueryClient} from 'react-query'
 import { PokemonProvider} from './context/Pokemon'
-import { ThemeContextProvider } from './context/ThemeContext'
+import { ThemeContext } from './context/ThemeContext'
 import { PokieContextProvider } from './context/PokieContext'
 import { AnimatePresence } from 'framer-motion'
 import { Route,Routes,useLocation,useParams } from 'react-router-dom'
@@ -15,12 +15,27 @@ const queryClient = new QueryClient ()
 
 function App() {
   const location = useLocation();
+  const {mode} = useContext(ThemeContext)
+  const random = () => {
+    let index = Math.floor(Math.random() * 500)
+    if(index <10){
+      index =`00${index}`
+     }else if(index >=10 && index<100){
+      index = `0${index}`
+      }
+  return index
+  }
+
   return (
-   <div className='App'>
-      
+   <div className={mode ? 'App light-mode' : 'App dark-mode'}>
+     {/* randomly display two pokemons, display is fixed and zindex in negatives */}
+      <div className='bgShow'>
+          <img className='first' src={`http://assets.pokemon.com/assets/cms2/img/pokedex/detail/${random()}.png`} alt=""/>
+          <img className='second' src={`http://assets.pokemon.com/assets/cms2/img/pokedex/detail/${random()}.png`} alt=""/>
+      </div>
+    {/* App begins here */}
       <div className='container'>
         <QueryClientProvider client={queryClient}>
-           <ThemeContextProvider >
            <PokemonProvider>
              <PokieContextProvider>
                <AnimatePresence exitBeforeEnter>
@@ -37,7 +52,6 @@ function App() {
                </AnimatePresence>
              </PokieContextProvider>
            </PokemonProvider>
-           </ThemeContextProvider>
          </QueryClientProvider>
       </div>
    </div>

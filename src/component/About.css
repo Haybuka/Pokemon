@@ -60,7 +60,7 @@
     justify-content: space-between;
     align-items: center;
 }
-.About-eggGroup{display: flex;}
+.About-eggGroup{color:#fff;display: flex;}
 .About-eggGroup ul{
     margin-left: 10px;
 }

@@ -37,7 +37,7 @@ export function PokemonProvider({children}) {
     const [speech,setSpeech] = useState(0)
     const [pokie,setPokie] = useState('')
     const [offset,setOffset] = useState(0)
-    const {data,isPreviousData} = useQuery(['pokemon',offset],fetchPokemon,{
+    const {data,isPreviousData,status} = useQuery(['pokemon',offset],fetchPokemon,{
         keepPreviousData:true
     })
     const newData = (data && data.results.map (handleSearch))
@@ -51,7 +51,7 @@ export function PokemonProvider({children}) {
         setPokie(poke)
     }
   return (
-    <PokemonContext.Provider value={{offset,setOffset,newData,first,second,third,fourth,fifth,handleClick,pokie,handleSearch}}>
+    <PokemonContext.Provider value={{status,offset,setOffset,newData,first,second,third,fourth,fifth,handleClick,pokie,handleSearch}}>
       {children}
     </PokemonContext.Provider>
   )

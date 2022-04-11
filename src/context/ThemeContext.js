@@ -2,9 +2,9 @@ import React,{useState,createContext} from 'react'
 
 export const ThemeContext = createContext()
 export function ThemeContextProvider({children}) {
-    const [mode,setMode] = useState(false)
+    const [theme,setTheme] = useState(false)
   return (
-    <ThemeContext.Provider value={{mode,setMode}}>
+    <ThemeContext.Provider value={{theme,setTheme}}>
         {children}
     </ThemeContext.Provider>
   )

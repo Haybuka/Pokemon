@@ -7,15 +7,9 @@ import '../About.css'
 import '../Evolution.css'
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
+import { ThemeContext } from '../../context/ThemeContext'
 
-// const animateVariant = {
-//     exit : {
-//         x : '-100vw',
-//         transition : {
-//             ease : 'easeInOut'
-//         }
-//     }
-// }
+
 export function About() {
     const location = useLocation()
     const {about,name,species,localData} = useContext(Pokiecontext)
@@ -34,7 +28,7 @@ export function About() {
    const tips = status==="success" && data.flavor_text_entries 
    const eggGroups = status==="success" && data.egg_groups
    const habitat = status==="success" && data.habitat.name
-  
+//   console.log(localData)
   return (
     <motion.aside className='About' exit={{x:-100}} initial={{x:-100}} animate={{x:0}} key={location.key}>
         <div>
@@ -184,8 +178,9 @@ export function Evolution() {
             }
         }
     }
-    const {species} = useContext(Pokiecontext)
+    const {species,sprites} = useContext(Pokiecontext)
     const url = species.url
+    // const {theme,setTheme} = useContext(ThemeContext)
     async function fetchEncounter ({queryKey}){
         const res = await fetch(`${queryKey[1]}`)
         return res.json()
@@ -194,7 +189,8 @@ export function Evolution() {
  
     const {varieties,color,evolution_chain,evolves_from_species} = status==="success" && data
  
-    // console.log(evolves_from_species)
+    const name = color && color.name
+    console.log(sprites)
     return (
     <motion.section className='Evolution' exit={{x:-100}} initial={{x:-100}} animate={{x:0}} key={location.key}>
        {evolves_from_species && (
@@ -209,12 +205,6 @@ export function Evolution() {
                {varieties && varieties.map( (variety,id)=> <li key={id}>{variety.pokemon.name}</li>)}
            </ul>
       </article>
-      {/* <article>
-           <h4>#Facts</h4>
-           <ul>
-               {tips && truncatedTips.map( (tip,id)=> <li key={id}>{tip.flavor_text}</li>)}
-           </ul>
-      </article> */}
     </motion.section>
     )
 }
