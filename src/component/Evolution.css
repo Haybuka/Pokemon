@@ -1,15 +1,25 @@
-.Evolution h4{
+.Evolution{
     color: #fff;
-    font-size: 18px;
+}
+.Evolution h4{
+    color: inherit;
+    font-size: 16px;
 
 }
-.Evolution ul li{
-    list-style: square;
-    font-size: 14px;
-    color: #fff;
-    /* margin: 0 10px 0 0; */
+.Evolution .Evolution-species{
+    margin: 10px 0;
+}
+.Evolution .Evolution-species p{
+   margin-left: 20px;
+}
+.Evolution-varieties ul{
+    margin-left: 20px;
 }
 .Evolution-varieties ul li{
     display: inline-block;
     margin-right: 10px;
+    list-style: square;
+   color: inherit;
+   font-size: 14px;
+
 }

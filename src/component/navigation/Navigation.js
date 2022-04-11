@@ -6,7 +6,18 @@ import '../Stats.css'
 import '../About.css'
 import '../Evolution.css'
 import { useQuery } from 'react-query'
+import { useLocation } from 'react-router-dom'
+
+// const animateVariant = {
+//     exit : {
+//         x : '-100vw',
+//         transition : {
+//             ease : 'easeInOut'
+//         }
+//     }
+// }
 export function About() {
+    const location = useLocation()
     const {about,name,species,localData} = useContext(Pokiecontext)
    const abilities = about[0].abilities
    const {height} = about[0]
@@ -23,9 +34,9 @@ export function About() {
    const tips = status==="success" && data.flavor_text_entries 
    const eggGroups = status==="success" && data.egg_groups
    const habitat = status==="success" && data.habitat.name
-   console.log(eggGroups)
+  
   return (
-    <aside className='About'>
+    <motion.aside className='About' exit={{x:-100}} initial={{x:-100}} animate={{x:0}} key={location.key}>
         <div>
 
             <h4 className='About-experience'>
@@ -86,13 +97,29 @@ export function About() {
            </section>
            
         </div>
-    </aside>
+    </motion.aside>
 
     // https://pokeapi.co/api/v2/pokemon/10034/  further adjustments
   )
 }
 
 export function Stats() {
+    const statVariant = {
+        visible : {
+            transition : {
+                type:'spring',
+                when:'beforeChildren',
+                staggerChildren : 0.4
+            }
+        },
+        exit : {
+            x : '-100vw',
+            transition : {
+                ease : 'easeInOut',
+                duration:5
+            }
+        }
+    }
     const progressVariant ={
        hidden : {
            width:0,
@@ -101,10 +128,11 @@ export function Stats() {
            
        }
     }
-  
+    const location = useLocation()
+ 
     const {stats} = useContext(Pokiecontext)
     return (
-      <motion.aside className='Stats'>
+      <motion.aside className='Stats' exit={{x:-100}} initial={{x:-100}} animate={{x:0}}  key={location.key}>
          {stats.map((stat,id)=> (
              <section key={id}>
                 <h4 className='Stat-name'>{stat.stat.name}</h4>
@@ -125,20 +153,37 @@ export function Stats() {
 }
 
 export function Move() {
+    const location = useLocation()
     const {moves} = useContext(Pokiecontext)
     const truncatedMoves = moves.slice(5,40)
     return (
-      <ul className='Moves'>
+      <motion.ul className='Moves' exit={{x:-100}}  initial={{x:-100}} animate={{x:0}} key={location.key}>
           {truncatedMoves.map((move,id) => (
               <li key={id}> {move.move.name}</li>
           ))}
-      </ul>
+      </motion.ul>
  
     )
 
 }
   
 export function Evolution() {
+    const location = useLocation()
+    const evolVariant = {
+        visible : {
+            transition : {
+                type:'spring',
+                when:'beforeChildren',
+                staggerChildren : 0.4
+            }
+        },
+        exit : {
+            x : '-100vw',
+            transition : {
+                ease : 'easeInOut'
+            }
+        }
+    }
     const {species} = useContext(Pokiecontext)
     const url = species.url
     async function fetchEncounter ({queryKey}){
@@ -149,11 +194,17 @@ export function Evolution() {
  
     const {varieties,color,evolution_chain,evolves_from_species} = status==="success" && data
  
-    // console.log(color.name,evolution_chain.url,evolves_from_species)
+    // console.log(evolves_from_species)
     return (
-    <section className='Evolution'>
+    <motion.section className='Evolution' exit={{x:-100}} initial={{x:-100}} animate={{x:0}} key={location.key}>
+       {evolves_from_species && (
+           <article className='Evolution-species'>
+               <h4>Evolves from : </h4>
+               <p>{evolves_from_species.name}</p>
+           </article>
+       )}
       <article className='Evolution-varieties'>
-           <h4>varieties</h4>
+           <h4>varieties : </h4>
            <ul>
                {varieties && varieties.map( (variety,id)=> <li key={id}>{variety.pokemon.name}</li>)}
            </ul>
@@ -164,7 +215,7 @@ export function Evolution() {
                {tips && truncatedTips.map( (tip,id)=> <li key={id}>{tip.flavor_text}</li>)}
            </ul>
       </article> */}
-    </section>
+    </motion.section>
     )
 }
   

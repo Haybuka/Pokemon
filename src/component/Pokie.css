@@ -6,6 +6,13 @@
     height: auto;
     color: #fff;
 }
+.viewHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    margin: 15px 0;
+}
 
 .h-screen{
     height: 100vh !important;
@@ -13,6 +20,7 @@
 .h-auto{
     height: auto !important;
     padding-bottom: 10px;
+    padding-top: 40px !important;
 }
 .Pokie h3{
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.515);
@@ -32,6 +40,8 @@
 }
 .Pokie .Pokemon-div{
     text-align: center;
+    position: relative;
+    z-index: 10;
 }
 .Pokie img{
     filter: drop-shadow(10px 20px 100px rgb(254, 254, 254));
@@ -83,9 +93,11 @@
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
     height: 50px;
+   
 }
+
+
 .h-full{
-    /* height: 100vh; */
     transform: translateY('-120px');
 }
 .Pokie-details.active{
@@ -124,3 +136,4 @@
 .pokieNav:hover::before{
     width: 80%;
 }
+

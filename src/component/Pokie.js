@@ -3,8 +3,8 @@ import { useQuery } from 'react-query'
 import { useContext,useState } from 'react';
 import { Pokiecontext } from '../context/PokieContext';
 import { ThemeContext } from '../context/ThemeContext';
-import {useParams,useNavigate, NavLink, Outlet} from 'react-router-dom'
-import { motion } from 'framer-motion';
+import {useParams,useLocation,useNavigate, NavLink, Outlet} from 'react-router-dom'
+import { motion,AnimatePresence} from 'framer-motion';
 import './Pokie.css'
 async function fetchPokemon({queryKey}){
     const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${queryKey[1]}`);
@@ -46,11 +46,30 @@ function Pokie() {
             y: 0
          },
          visible : {
-             y: pageView ? '-120px' : '0px'
+             y: pageView ? '-40px' : '0px'
          }
     }
 
-    
+    const pokieVariant = {
+        hidden: {
+           opacity:0
+        },
+        visible : {
+          opacity:1,
+            transition : {
+                type:'spring',
+                when:'beforeChildren',
+                staggerChildren : 0.4
+            }
+        },
+           exit : {
+               opacity:0.5,
+               transition : {
+                   ease : 'easeInOut'
+               }
+           }
+       }
+       const location = useLocation()
   return (
     
        <>
@@ -60,21 +79,38 @@ function Pokie() {
              <header>
                  <nav>
                     <svg onClick={()=> navigate("/")} className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                     <h3>{pageView ? `${pokemon.name}`:`#${pokemon.idx}`} </h3>
+                     <h3>{!pageView && `#${pokemon.idx}`} </h3>
                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
                  </nav>
              </header>
-             <section>
+             <section className='Pokie-pageView'>
+                 {pageView && (<section>
+                     <ul className='viewHeader'>
+                         <li>
+                           <h3>{pokemon.name}</h3>
+                         </li>
+                         <li>
+                           <h3>#{pokemon.idx} </h3>
+                         </li>
+                     </ul>
+                     <PokeType type={pokemonType}/>
+                 </section>)}
                  <div className='Pokemon-div'>
                      <img src={`http://assets.pokemon.com/assets/cms2/img/pokedex/detail/${pokemon.idx}.png`} alt="pokemon"/>
                  </div>
-                 <h3 className='Pokie-name'>{name}</h3>
-                 <PokeType type={pokemonType}/>
+                 { !pageView && (
+                    <>
+                        <h3 className='Pokie-name'>{name}</h3>
+                        <PokeType type={pokemonType}/>
+                    </>
+                 )}
              </section>
              </div>
-             <motion.section variants={pageVariant} animate="visible" initial="hidden" className={pageView ? 'Pokie-details h-auto': 'Pokie-details'} onClick={()=> setPageView(true)}>
+             <motion.section variants={pageVariant} animate="visible" initial="hidden" className={pageView ? 'Pokie-details h-auto light-mode': 'Pokie-details'} onClick={()=> setPageView(true)}>
                 <PokeNav pokemon={pokemon}/>     
-                <Outlet />
+                <AnimatePresence exitBeforeEnter>
+                    <Outlet key={location.key} />
+                </AnimatePresence>
              </motion.section>
          </main>
          )}

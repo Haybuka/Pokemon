@@ -4,7 +4,8 @@ import {QueryClientProvider,QueryClient} from 'react-query'
 import { PokemonProvider} from './context/Pokemon'
 import { ThemeContextProvider } from './context/ThemeContext'
 import { PokieContextProvider } from './context/PokieContext'
-import { Route,Routes } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
+import { Route,Routes,useLocation,useParams } from 'react-router-dom'
 import { About,Stats,Move,Evolution } from './component/navigation/Navigation'
 import './App.css'
 import Pokedex from './Pokedex'
@@ -13,6 +14,7 @@ const queryClient = new QueryClient ()
 
 
 function App() {
+  const location = useLocation();
   return (
    <div className='App'>
       
@@ -21,7 +23,8 @@ function App() {
            <ThemeContextProvider >
            <PokemonProvider>
              <PokieContextProvider>
-              <Routes>
+               <AnimatePresence exitBeforeEnter>
+               <Routes >
                   <Route path="/" element={<Pokedex/>}/>
                    <Route path="/:id" element={<Pokie />}>
                       <Route path="about" element={<About />}/>
@@ -31,6 +34,7 @@ function App() {
                   </Route>
                   <Route path="*" element={<Pokedex />}/>
                </Routes>
+               </AnimatePresence>
              </PokieContextProvider>
            </PokemonProvider>
            </ThemeContextProvider>

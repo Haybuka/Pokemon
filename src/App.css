@@ -16,9 +16,41 @@
   display: flex;
   flex-wrap: wrap;
 }
-/* button{
-  padding: 10px 15px;
-  display: inline-block;
-  margin: 10px;
-} */
 
+
+/* light mode */
+.Pokedex.light-mode{
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.766);
+}
+.Pokedex.light-mode .details-nav a,
+.Pokedex.light-mode .About-abilities li,
+.Pokedex.light-mode .Evolution ul li,
+.Pokedex.light-mode .Evolution h4,
+.Pokedex.light-mode .About h4,
+.Pokedex.light-mode .About-fact,
+.Pokedex.light-mode .Stat-name,
+.Pokedex.light-mode .About-personality{
+  color: rgba(0, 0, 0, 0.866);
+}
+.Pokedex.light-mode .exp-high{
+  color:rgb(17, 159, 17);
+}
+.Pokedex.light-mode .Stat-num{
+ color:rgb(67, 67, 67);
+}
+
+@media screen and (max-width:460px){
+  .Pokie{
+      width: auto !important;
+  }
+  .App{
+    padding: 10px 0;
+  }
+  .Pokie-container{
+    padding: 10px;
+  }
+  .Pokie-details{
+    padding: 5px 10px !important;
+  }
+}
