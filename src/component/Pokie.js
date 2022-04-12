@@ -52,7 +52,7 @@ function Pokie() {
 
 
        const location = useLocation()
-
+  console.log(status)
   return (
     
       status ==='success' ? (
@@ -111,7 +111,7 @@ function Pokie() {
             </nav>
         </header>
         <section className='Pokie-pageView'>
-           <section>
+            (<section>
                 <div className='Pokemon-div'>
                    <img src='https://www.svgrepo.com/show/276264/pokeball-pokemon.svg' alt="pokemon"/>
                 </div>  
@@ -123,7 +123,7 @@ function Pokie() {
                       <h3># ??? </h3>
                     </li>
                 </ul>
-                <p style={{textAlign:'center'}}> Not Found</p>
+                <p> Not Found</p>
             </section>
            
         </section>
