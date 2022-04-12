@@ -51,7 +51,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [Github](https://github.com/Haybuka/Pokemon)
-- Live Site URL: [Netlify](https://pokemun.netlify.app)
+- Live Site URL: [Netlify](https://pok3mun.netlify.app)
 
 ## My process
 
