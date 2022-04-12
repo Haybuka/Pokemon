@@ -36,7 +36,7 @@ function Pokie() {
     let params = useParams();
     const navigate = useNavigate()
     let name = params.id
-    const {data,status} = useQuery(['Pokemon',name],fetchPokemon,{
+    const {data,status,isPreviousData} = useQuery(['Pokemon',name],fetchPokemon,{
         keepPreviousData:true
     })   
     const pokemon = data && handleSearch(data)
@@ -52,7 +52,7 @@ function Pokie() {
 
 
        const location = useLocation()
-  console.log(status)
+
   return (
     
       status ==='success' ? (
@@ -111,7 +111,7 @@ function Pokie() {
             </nav>
         </header>
         <section className='Pokie-pageView'>
-            (<section>
+            <section>
                 <div className='Pokemon-div'>
                    <img src='https://www.svgrepo.com/show/276264/pokeball-pokemon.svg' alt="pokemon"/>
                 </div>  

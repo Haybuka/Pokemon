@@ -44,6 +44,7 @@ function App() {
                       <Route path="move" element={<Move />}/>
                       <Route path="stats" element={<Stats />}/>
                       <Route path="evolution" element={<Evolution />}/>
+                      <Route path="*" element={<Pokedex />}/>
                   </Route>
                   <Route path="*" element={<Pokedex />}/>
                </Routes>

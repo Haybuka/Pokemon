@@ -2,14 +2,24 @@ import React,{createContext,useState} from 'react'
 
 export const Pokiecontext = createContext ()
 export function PokieContextProvider({children}) {
-    const [navData,setNavData] = useState(null)
+    const [navData,setNavData] = useState([])
     navData && localStorage.setItem('data',JSON.stringify(navData))
 
     // const moves = navData && navData.moves
     const localData =  JSON.parse(localStorage.getItem('data'))
-    const {moves,stats, name,species,sprites} = localData
-    // const tipsId = localData.species.url
-    // const species = localData.species.url
+    try {
+      var {moves,stats, name,species,sprites} = localData && localData
+    } catch (error) {
+      var {moves,stats, name,species,sprites} = {
+          moves : '',
+          stats : '',
+          name : 'Fetch Error',
+          species : '',
+          sprites : ''
+      }
+
+    }
+
     const about = [
        {
          experience : {
@@ -29,7 +39,7 @@ export function PokieContextProvider({children}) {
            image : <svg class="w-6 h-6 " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
 
          },
-         abilities : [...localData.abilities]
+        //  abilities : [...localData.abilities]
       }
     ]
  

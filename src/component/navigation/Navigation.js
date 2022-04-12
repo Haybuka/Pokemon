@@ -11,8 +11,8 @@ import { useLocation } from 'react-router-dom'
 
 export function About() {
     const location = useLocation()
-    const {about,species} = useContext(Pokiecontext)
-   const abilities = about[0].abilities
+    const {about,species,localData} = useContext(Pokiecontext)
+   const abilities = localData.abilities
    const {height} = about[0]
    const {weight} = about[0]
    const {experience} = about[0]
@@ -27,7 +27,6 @@ export function About() {
    const tips = status==="success" && data.flavor_text_entries 
    const eggGroups = status==="success" && data.egg_groups
    const habitat = status==="success" && data.habitat.name
-//   console.log(localData)
   return (
     <motion.aside className='About' exit={{x:-100}} initial={{x:-100}} animate={{x:0}} key={location.key}>
         <div>
@@ -162,32 +161,37 @@ export function Evolution() {
             }
         }
     }
-    const {species} = useContext(Pokiecontext)
-    const url = species.url
-    
+    const {species,localData} = useContext(Pokiecontext)
+
+
+    const url = `${localData.specie}${localData.id}`
+    console.log(url)
     async function fetchEncounter ({queryKey}){
         const res = await fetch(`${queryKey[1]}`)
         return res.json()
     }
     const {data,status} = useQuery(['encounter',url],fetchEncounter)
- 
-    const {varieties,evolves_from_species} = status==="success" && data
+    data && localStorage.setItem('specie',JSON.stringify(data))
+    const specieData =  JSON.parse(localStorage.getItem('specie'))
+    const {varieties,evolves_from_species} = status==="success" && specieData
  
     return (
-    <motion.section className='Evolution' exit={{x:-100}} initial={{x:-100}} animate={{x:0}} key={location.key}>
-       {evolves_from_species && (
-           <article className='Evolution-species'>
-               <h4>Evolves from : </h4>
-               <p>{evolves_from_species.name}</p>
-           </article>
-       )}
-      <article className='Evolution-varieties'>
-           <h4>varieties : </h4>
-           <ul>
-               {varieties && varieties.map( (variety,id)=> <li key={id}>{variety.pokemon.name}</li>)}
-           </ul>
-      </article>
-    </motion.section>
+      status === "success" && (
+        <motion.section className='Evolution' exit={{x:-100}} initial={{x:-100}} animate={{x:0}} key={location.key}>
+        {evolves_from_species && (
+            <article className='Evolution-species'>
+                <h4>Evolves from : </h4>
+                <p>{evolves_from_species.name}</p>
+            </article>
+        )}
+       <article className='Evolution-varieties'>
+            <h4>varieties : </h4>
+            <ul>
+                {varieties && varieties.map( (variety,id)=> <li key={id}>{variety.pokemon.name}</li>)}
+            </ul>
+       </article>
+     </motion.section>
+      )
     )
 }
   
