@@ -44,7 +44,7 @@ function Pokedex(props) {
              }
          }
      }
-     console.log(status)
+    //  console.log(status)
   return (
     status === "success" ? (
       <motion.div variants={pokedexVariant} initial="hidden" animate="visible" exit="exit" className='Pokedex'>
@@ -69,12 +69,13 @@ function Pokedex(props) {
     ) : (
       <section className='Pokedex-card' style={{position:'fixed',transform:'translate(-50%,-50%)',top:'50%',left:'50%'}}>
          <div className="">
-             <img src='https://www.svgrepo.com/show/276264/pokeball-pokemon.svg' alt="pokemon"/>
+             <img src='https://www.svgrepo.com/show/276264/pokeball-pokemon.svg' alt="pokeball"/>
         </div>
-        <h3>Blimey!!!</h3>
-      <motion.p variants={pokeBtn}  className='Pokedex-btn'>
-        <p>Ooops! <br /> No Pokemon Captured</p>
-      </motion.p>
+        <h3 style={{margin: '20px 0'}}>Blimey!!!</h3>
+      <p className='Pokedex-btn'>
+        <span>Ooops! <br /> No Pokemon Captured</span>
+      </p>
+      <span style={{display:'block', fontSize:'14px', color:'red', margin:'15px 0'}}>Error in connection!</span>
  </section>
     )
   )

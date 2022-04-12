@@ -8,10 +8,10 @@ It has helped to improve my coding skills by combinining the following :
   4. Use of Context
   5. React Responsive Design
   6. Working with REST Api
-  7. Tailwind Css.
+  7. Tailwind Css (will refactor to).
   8. React Router
   9. Code Documentation (Layout copied from frontendMentor)
-  10. Local storage - handled refresh problem of pages
+  10. Local storage - handled some refresh problem of pages and also cases of network connectivity
   11. Some Skill i dont know about, that maybe caught your attention ... LOL
   
 
@@ -39,27 +39,19 @@ Users should be able to:
 
 - View the optimal layout for the site depending on their device's screen size
 - See hover states for all interactive elements on the page
-- Open a lightbox gallery by clicking on the large product image
-- Switch the large product image by clicking on the small thumbnail images
-- Add items to the cart
-- View the cart and remove items from it
+- Open a new route based on a pokemon clicked
+- cycle through a list of pokemons
+- see pokemon details after a pokemon has been selected
+
 
 ### Screenshot
 
-![](./screenshot.jpg)
-
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![](./screenshot.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Github](https://github.com/Haybuka/Pokemon)
+- Live Site URL: [Netlify](https://pokemun.netlify.app)
 
 ## My process
 
@@ -69,12 +61,14 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - CSS custom properties
 - Flexbox
 - CSS Grid
-- Mobile-first workflow
+- Desktop-first workflow
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
+- Framer Motion
+- React Query
+- React Router
+- Pokemon Api 
 
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+
 
 ### What I learned
 
@@ -82,18 +76,22 @@ Use this section to recap over some of your major learnings while working throug
 
 To see how you can add code snippets, see below:
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+  // using React Query
+  // first - wrap your app with the QueryClientprovider      
+        const queryClient = new QueryClient ()
+
+        <QueryClientProvider client={queryClient}>
+          <Pokemon />
+        </QueryClientProvider>
+  // secondly - create your hook (use an array to pass in parameters for your url, and query key to access them)
+    const {data,status} = useQuery(['encounter',url],fetchEncounter)
+  // Then, Pass in your function.
+   async function fetchEncounter ({queryKey}){
+        const res = await fetch(`${queryKey[1]}`)
+        return res.json()
+    }
 ```
 
 If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
@@ -108,21 +106,18 @@ Use this section to outline areas that you want to continue focusing on in futur
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Pokemon Api](https://pokeapi.co/) - Pokemon Api, well, resource was fetched from this route and i have to say, the documentation did help to get around (just careful not to be lost).
+- [Framer Motion](https://www.framer.com/motion/) - I have to say, i didnt expect an animation library to be easy to grasp and also the documentation easier to follow. You'd definetely enjoy reading the documentation made for framer motion, it really helped to get started.
+- [React Query](https://react-query.tanstack.com/)
+- [React Router](https://reactrouter.com/)
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+
+NOTE - you might have issues loading up react query with current react, as query needs a RV16 to properly function (as at April,2022).
+
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website - [Ndulue Paschal](chukwu.netlify.app/)
+- LinkedIn - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Twitter - [@haybukarh](https://www.twitter.com/haybukarh)
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**

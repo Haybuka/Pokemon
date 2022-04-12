@@ -30,8 +30,8 @@ function App() {
    <div className={mode ? 'App light-mode' : 'App dark-mode'}>
      {/* randomly display two pokemons, display is fixed and zindex in negatives */}
       <div className='bgShow'>
-          <img className='first' src={`http://assets.pokemon.com/assets/cms2/img/pokedex/detail/${random()}.png`} alt=""/>
-          <img className='second' src={`http://assets.pokemon.com/assets/cms2/img/pokedex/detail/${random()}.png`} alt=""/>
+          <img className='first' src={`http://assets.pokemon.com/assets/cms2/img/pokedex/detail/${random()}.png`} alt="Catch 'em all"/>
+          <img className='second' src={`http://assets.pokemon.com/assets/cms2/img/pokedex/detail/${random()}.png`} alt="Catch 'em all"/>
       </div>
     {/* App begins here */}
       <div className='container'>
