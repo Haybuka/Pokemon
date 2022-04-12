@@ -31,12 +31,18 @@
     left: 10%;
     top: 50%;
     transform: translateY(-50%);
+    cursor: pointer;
+    background-color:transparent;
+    border-radius : 10px;
 }
 .btn-next{
     right: 10%;
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
+    cursor: pointer;
+    background-color:transparent;
+    border-radius : 10px;
 }
 @media screen and (max-width:950px){
     .Pokedex-group{

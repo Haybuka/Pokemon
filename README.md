@@ -85,24 +85,34 @@ To see how you can add code snippets, see below:
         <QueryClientProvider client={queryClient}>
           <Pokemon />
         </QueryClientProvider>
+
   // secondly - create your hook (use an array to pass in parameters for your url, and query key to access them)
+
     const {data,status} = useQuery(['encounter',url],fetchEncounter)
-  // Then, Pass in your function.
+
+  // Then, Pass in your function,using the queryKey to access passed in url parameter.
+
    async function fetchEncounter ({queryKey}){
         const res = await fetch(`${queryKey[1]}`)
         return res.json()
     }
 ```
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+   I'm really proud of the progress i made in the building of this app. While the focus was to build something functional it also includes understanding ideas and working with with concepts i felt were difficult to grasp. I do intend to continue building more in order to fully understand the use of context and also to properly split them among routes (i noticed fetching contexts that are tied,leads to more unnecessary reloads), i also will continue to build on the use of framer motion and also react query ( i really found it helpful with pagination, api data request amongst other things).
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+   To further develop this project, the following are areas that can be looked into,
+    1. Creating a versus page (this comes in hand for pokemon battles, the Versus can be either individually or as a team)
+    2. Recreating the desktop Ui
+    3. Use of a css library(e.g tailwind) to further make the styles open and more easy to follow for those looking to delve into it.
+
+   For my continued development,
+      i'll be taking a look at redux, how it affects my current approach towards solving a problem, and how to combine the concept with other frameworks to create something whole.
+      Also, i'll be seriously considering learning the use of Markdowns, properly writing a readMe file is equally important.
+
 
 ### Useful resources
 
@@ -118,6 +128,6 @@ NOTE - you might have issues loading up react query with current react, as query
 ## Author
 
 - Website - [Ndulue Paschal](chukwu.netlify.app/)
-- LinkedIn - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- LinkedIn - [@paschal-ndulue-336980134](https://www.linkedin.com/in/paschal-ndulue-336980134/)
 - Twitter - [@haybukarh](https://www.twitter.com/haybukarh)
 
