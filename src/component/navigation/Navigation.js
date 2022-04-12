@@ -7,12 +7,11 @@ import '../About.css'
 import '../Evolution.css'
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
-import { ThemeContext } from '../../context/ThemeContext'
 
 
 export function About() {
     const location = useLocation()
-    const {about,name,species,localData} = useContext(Pokiecontext)
+    const {about,species} = useContext(Pokiecontext)
    const abilities = about[0].abilities
    const {height} = about[0]
    const {weight} = about[0]
@@ -98,22 +97,7 @@ export function About() {
 }
 
 export function Stats() {
-    const statVariant = {
-        visible : {
-            transition : {
-                type:'spring',
-                when:'beforeChildren',
-                staggerChildren : 0.4
-            }
-        },
-        exit : {
-            x : '-100vw',
-            transition : {
-                ease : 'easeInOut',
-                duration:5
-            }
-        }
-    }
+  
     const progressVariant ={
        hidden : {
            width:0,
@@ -178,19 +162,17 @@ export function Evolution() {
             }
         }
     }
-    const {species,sprites} = useContext(Pokiecontext)
+    const {species} = useContext(Pokiecontext)
     const url = species.url
-    // const {theme,setTheme} = useContext(ThemeContext)
+    
     async function fetchEncounter ({queryKey}){
         const res = await fetch(`${queryKey[1]}`)
         return res.json()
     }
     const {data,status} = useQuery(['encounter',url],fetchEncounter)
  
-    const {varieties,color,evolution_chain,evolves_from_species} = status==="success" && data
+    const {varieties,evolves_from_species} = status==="success" && data
  
-    const name = color && color.name
-    console.log(sprites)
     return (
     <motion.section className='Evolution' exit={{x:-100}} initial={{x:-100}} animate={{x:0}} key={location.key}>
        {evolves_from_species && (

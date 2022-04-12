@@ -6,25 +6,8 @@ import './component/Pokedex.css'
 
 function Pokedex(props) {
     const {offset,newData,first,second,third,fourth,fifth,setOffset,status} = useContext(PokemonContext)
-    const sectionVariant = {
-        hidden : {
-            x:-100
-          },
-          visible : {
-              x:0
-          }
-    }
-    const pokeBtn = {
-        hidden : {
-          y:0,
-        },
-        visible : {
-            y:-5,
-            transition: {
-              yoyo : Infinity
-            }
-        }
-    }
+  
+ 
     const pokedexVariant = {
       hidden: {
          opacity:0
@@ -44,7 +27,6 @@ function Pokedex(props) {
              }
          }
      }
-    //  console.log(status)
   return (
     status === "success" ? (
       <motion.div variants={pokedexVariant} initial="hidden" animate="visible" exit="exit" className='Pokedex'>
@@ -71,11 +53,11 @@ function Pokedex(props) {
          <div className="">
              <img src='https://www.svgrepo.com/show/276264/pokeball-pokemon.svg' alt="pokeball"/>
         </div>
-        <h3 style={{margin: '20px 0'}}>Blimey!!!</h3>
+        <h3 style={{margin: '20px 0'}}>Oops!!!</h3>
       <p className='Pokedex-btn'>
-        <span>Ooops! <br /> No Pokemon Captured</span>
+        <span>Capturing Pokemon</span>
       </p>
-      <span style={{display:'block', fontSize:'14px', color:'red', margin:'15px 0'}}>Error in connection!</span>
+      {/* <span style={{display:'block', fontSize:'14px', color:'red', margin:'15px 0'}}>Error in connection!</span> */}
  </section>
     )
   )

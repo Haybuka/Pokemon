@@ -36,7 +36,7 @@ function Pokie() {
     let params = useParams();
     const navigate = useNavigate()
     let name = params.id
-    const {data} = useQuery(['Pokemon',name],fetchPokemon,{
+    const {data,status} = useQuery(['Pokemon',name],fetchPokemon,{
         keepPreviousData:true
     })   
     const pokemon = data && handleSearch(data)
@@ -50,30 +50,13 @@ function Pokie() {
          }
     }
 
-    const pokieVariant = {
-        hidden: {
-           opacity:0
-        },
-        visible : {
-          opacity:1,
-            transition : {
-                type:'spring',
-                when:'beforeChildren',
-                staggerChildren : 0.4
-            }
-        },
-           exit : {
-               opacity:0.5,
-               transition : {
-                   ease : 'easeInOut'
-               }
-           }
-       }
+
        const location = useLocation()
-//   console.log(data)
+
   return (
     
-       <>
+      status ==='success' ? (
+               <>
          {pokemon && (
              
              <main className={pageView ? 'Pokie h-screen light-mode':'Pokie dark-mode'}>
@@ -116,32 +99,37 @@ function Pokie() {
              </motion.section>
          </main>
          )}
-         <div className='switch' onClick={()=> setMode(!mode)}>
-              <label>
-             <input type='checkbox'/>
-             <span>
-
-               </span>
-
-           </label>
-      </div>
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       </>
+              </>
+      ) : (
+        <main className={pageView ? 'Pokie h-screen light-mode':'Pokie dark-mode'}>
+        <div className={mode ? 'Pokie-container light-mode':'Pokie-container dark-mode'} onClick={()=> setPageView(false)}>
+        <header>
+            <nav>
+               <svg onClick={()=> navigate("/")} className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                <h3>{name} </h3>
+                <svg style={{opacity:0}} className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            </nav>
+        </header>
+        <section className='Pokie-pageView'>
+           <section>
+                <div className='Pokemon-div'>
+                   <img src='https://www.svgrepo.com/show/276264/pokeball-pokemon.svg' alt="pokemon"/>
+                </div>  
+                <ul className='viewHeader'>
+                    <li>
+                      <h3>{name}</h3>
+                    </li>
+                    <li>
+                      <h3># ??? </h3>
+                    </li>
+                </ul>
+                <p style={{textAlign:'center'}}> Not Found</p>
+            </section>
+           
+        </section>
+        </div>
+    </main>
+      )
     
 
   )
@@ -160,7 +148,7 @@ function PokeType ({type}){
 }
 
 function PokeNav({pokemon}){
-    const {setNavData,setIsLoaded} = useContext(Pokiecontext)
+    const {setNavData} = useContext(Pokiecontext)
     return (
         <ul className='details-nav' >
             <NavLink onClick={()=> setNavData(pokemon)} to="about"  className={({ isActive=true }) => (isActive ? 'pokieNav-active' : 'pokieNav')}>About</NavLink> 

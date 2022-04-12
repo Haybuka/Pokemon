@@ -1,11 +1,10 @@
 import React,{useContext} from 'react'
-import Characters from './component/Characters'
 import {QueryClientProvider,QueryClient} from 'react-query'
 import { PokemonProvider} from './context/Pokemon'
 import { ThemeContext } from './context/ThemeContext'
 import { PokieContextProvider } from './context/PokieContext'
 import { AnimatePresence } from 'framer-motion'
-import { Route,Routes,useLocation,useParams } from 'react-router-dom'
+import { Route,Routes,useLocation} from 'react-router-dom'
 import { About,Stats,Move,Evolution } from './component/navigation/Navigation'
 import './App.css'
 import Pokedex from './Pokedex'
@@ -14,7 +13,6 @@ const queryClient = new QueryClient ()
 
 
 function App() {
-  const location = useLocation();
   const {mode} = useContext(ThemeContext)
   const random = () => {
     let index = Math.floor(Math.random() * 500)

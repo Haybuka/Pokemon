@@ -2,7 +2,6 @@ import React,{useContext} from 'react'
 import { motion } from 'framer-motion'
 import { PokemonContext } from '../context/Pokemon'
 import { Link} from 'react-router-dom'
-import { ThemeContext } from '../context/ThemeContext'
 
 const sectionVariant = {
     hidden : {

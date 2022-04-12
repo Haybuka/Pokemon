@@ -7,7 +7,7 @@ export function PokieContextProvider({children}) {
 
     // const moves = navData && navData.moves
     const localData =  JSON.parse(localStorage.getItem('data'))
-    const {moves,stats,rgb , name,species,sprites} = localData
+    const {moves,stats, name,species,sprites} = localData
     // const tipsId = localData.species.url
     // const species = localData.species.url
     const about = [

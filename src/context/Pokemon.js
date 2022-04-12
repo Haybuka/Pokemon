@@ -34,10 +34,9 @@ const fetchPokemon = async ({queryKey}) => {
 
 
 export function PokemonProvider({children}) {
-    const [speech,setSpeech] = useState(0)
     const [pokie,setPokie] = useState('')
     const [offset,setOffset] = useState(0)
-    const {data,isPreviousData,status} = useQuery(['pokemon',offset],fetchPokemon,{
+    const {data,status} = useQuery(['pokemon',offset],fetchPokemon,{
         keepPreviousData:true
     })
     const newData = (data && data.results.map (handleSearch))
